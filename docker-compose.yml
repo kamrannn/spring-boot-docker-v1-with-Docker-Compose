@@ -1,0 +1,21 @@
+version: "3"
+services:
+  docker-test-jdbc:
+    image: sendtokamran0/spring-boot-docker-v1:v1.0
+    ports:
+      - "8080:8091"
+    networks:
+      - spring-boot-docker-v1-mysql
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8
+    networks:
+      - spring-boot-docker-v1-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bootdb
+
+networks:
+  spring-boot-docker-v1-mysql:
